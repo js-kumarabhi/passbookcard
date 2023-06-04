@@ -30,105 +30,111 @@
     </div>
   </nav>
 
-<div class="container mt-3">
+<div class="container">
+  <p class="text-danger">*Fill the form in capital letters.</p>
   <div class="row">
     <div class="col-md-8">
       <form class="row g-3">
 
         <div class="col-md-6">
-          <label for="incif_num" class="form-label">Cif Number</label>
-          <input type="number" class="form-control"  id="incif_num" placeholder="Enter CIF number...">
-        </div>
-
-        <div class="col-md-6">
-          <label for="inac_num" class="form-label">Account Number</label>
-          <input type="number" class="form-control"  id="inac_num" placeholder="Enter account number...">
-        </div>
-
-        <div class="col-md-6">
-          <label for="inifsc" class="form-label">IFSC Code</label>
-          <input type="text" class="form-control"  id="inifsc" placeholder="Enter ifsc code [SBIN0000000]">
-        </div>
-
-        <div class="col-md-6">
           <label for="fname" class="form-label">First Name</label>
-          <input type="text" class="form-control"  id="infname" placeholder="Your first name...."  >
+          <input type="text" class="form-control" value="TEST"  id="infname" placeholder="Your first name...."  >
         </div>
 
         <div class="col-md-6">
           <label for="mname" class="form-label">Middle Name</label>
-          <input type="text" class="form-control"  id="inmname" placeholder="Your middle name...."  >
+          <input type="text" class="form-control" value="TESTED"  id="inmname" placeholder="Your middle name...."  >
         </div>
 
         <div class="col-md-6">
           <label for="lname" class="form-label">Last Name</label>
-          <input type="text" class="form-control"  id="inlname" placeholder="Your last name...."  >
+          <input type="text" class="form-control" value="TESTING"  id="inlname" placeholder="Your last name...."  >
         </div>
 
         <div class="col-md-6">
-          <label for="address" class="form-label">Address</label>
-          <input type="text" class="form-control"  id="inaddress" placeholder="Your address...."  >
+          <label for="incif_num" class="form-label">Cif Number</label>
+          <input type="number" class="form-control" value="000000000000"  id="incif_num" placeholder="Enter CIF number...">
+        </div>
+
+        <div class="col-md-6">
+          <label for="inac_num" class="form-label">Account Number</label>
+          <input type="number" class="form-control" value="00000000000"  id="inac_num" placeholder="Enter account number...">
+        </div>
+
+        <div class="col-md-6">
+          <label for="inifsc" class="form-label">IFSC Code</label>
+          <input type="text" class="form-control" value="SBIN000XXXX"  id="inifsc" placeholder="Enter ifsc code...">
+        </div>
+
+        <div class="col-md-6">
+          <label for="address" class="form-label">Address <small class="text-danger">(*with S/O.)</small></label>
+          <input type="text" class="form-control" value="S/O - TESTER, VILL - TESTED, POST - TESTER, DIST - TESTING"  id="inaddress" placeholder="Your address...."  >
+        </div>
+
+        <div class="col-md-6">
+          <label for="invname" class="form-label">Village Name</label>
+          <input type="text" class="form-control" value="PS - TESTING"    id="invname" placeholder="Your address...."  >
         </div>
 
         <div class="col-md-6">
           <label for="inpin" class="form-label">Pin Code</label>
-          <input type="number" class="form-control"  id="inpin" placeholder="Enter pin code...."  >
+          <input type="number" class="form-control" value="000000"  id="inpin" placeholder="Enter pin code...."  >
         </div>
 
         <div class="col-md-6">
           <label for="inkoname" class="form-label">KO Name</label>
-          <input type="text" class="form-control"  id="inkoname" placeholder="Your ko name...."  >
+          <input type="text" class="form-control" value="TESTER"  id="inkoname" placeholder="Your ko name...."  >
         </div>
 
         <div class="col-md-6">
           <label for="inkoloaction" class="form-label">KO Location</label>
-          <input type="text" class="form-control"  id="inkoloaction" placeholder="Your ko loaction...."  >
+          <input type="text" class="form-control" value="TESTING"  id="inkoloaction" placeholder="Your ko loaction...."  >
         </div>
 
         <!-- Rest of the form fields -->
 
-        <div class="col-md-6">
-          <label class="form-label" for="customFile">Upload photo</label>
+        <div class="col-md-6" style="margin-bottom: 2.5rem!important;">
+          <label class="form-label" for="customFile">Upload photo <small class="text-danger">(*square img.)</small></label>
           <input type="file" class="form-control" id="file" accept="image/*" onchange="loadImage(event)">
         </div>
 
-        <div class="col-md-6">
-          <label class="form-label" for="customFile">Click the generate card button.</label>
-          <br>
-          <button type="submit" id="preview" class="btn btn-primary">Generate Card</button>
-        </div>
       </form>
     </div>
 
     <div class="col-md-4">
-      <canvas id="result" class="card mt-3" style="width: 400px; height: 300px;">
-        <header id="head">
-          <div class="camp">
-            <h5>SBI - KIOSK BNANKING</h5>
-            <span>Identity Card</span>
+      <div class="d-flex justify-content-center">
+        <canvas id="result" class="card">
+          <header id="head">
+            <div class="camp">
+              <h5>SBI - KIOSK BNANKING</h5>
+              <span>Identity Card</span>
+            </div>
+            <img src="sbi_logo.png" id="logo">
+          </header>
+  
+          <div class="content">
+            <ul>
+              <li id="cif_num"></li>
+              <li id="ac_num"></li>
+              <li id="ifsc"></li>
+              <li id="fname"></li>
+              <li id="mname"></li>
+              <li id="lname"></li>
+              <li id="address"></li>
+              <li id="vname"></li>
+              <li id="pin"></li>
+              <li id="koname"></li>
+              <li id="koloaction"></li>
+              <!-- Rest of the list items -->
+            </ul>
+            <img src="" id="imgDisplayed">
           </div>
-          <img src="sbi_logo.png" id="logo">
-        </header>
+        </canvas>
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit" id="preview" class="btn btn-primary m-2">Generate the Card</button>
 
-        <div class="content">
-          <ul>
-            <li id="cif_num"></li>
-            <li id="ac_num"></li>
-            <li id="ifsc"></li>
-            <li id="fname"></li>
-            <li id="mname"></li>
-            <li id="lname"></li>
-            <li id="address"></li>
-            <li id="pin"></li>
-            <li id="koname"></li>
-            <li id="koloaction"></li>
-            <!-- Rest of the list items -->
-          </ul>
-          <img src="" id="imgDisplayed">
-        </div>
-      </canvas>
-      <div class="mt-3">
-        <button id="down" class="btn btn-success">Download</button>
+        <button id="down" class="btn btn-success m-2">Download Now</button>
       </div>
     </div>
   </div>

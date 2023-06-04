@@ -5,8 +5,8 @@ preview.addEventListener("click", function(event) {
   prev();
 });
 
-canvas.width = 300; // Set the desired width
-canvas.height = 230; // Set the desired height
+canvas.width = 350; // Set the desired width
+canvas.height = 270; // Set the desired height
 
 const ctx = canvas.getContext("2d");
 ctx.font = "20px Helvetica";
@@ -22,12 +22,11 @@ function prev() {
   let inmname = document.getElementById("inmname").value;
   let inlname = document.getElementById("inlname").value;
 
+  let invname = document.getElementById("invname").value;
   let inaddress = document.getElementById("inaddress").value;
   let inpin = document.getElementById("inpin").value;
   let inkoname = document.getElementById("inkoname").value;
   let inkoloaction = document.getElementById("inkoloaction").value;
-
-
 
   // Retrieve values of other input fields
 
@@ -38,12 +37,13 @@ function prev() {
   const mname = document.getElementById("mname");
   const lname = document.getElementById("lname");
 
+  const vname = document.getElementById("vname");
   const address = document.getElementById("address");
   const pin = document.getElementById("pin");
   const koname = document.getElementById("koname");
   const koloaction = document.getElementById("koloaction");
 
-  // Get other list item elements
+  // Set innerHTML of other list items
 
   cifNum.innerHTML = incifNum;
   acNum.innerHTML = inacNum;
@@ -52,57 +52,79 @@ function prev() {
   mname.innerHTML = inmname;
   lname.innerHTML = inlname;
 
+  vname.innerHTML = invname;
   address.innerHTML = inaddress;
   pin.innerHTML = inpin;
   koname.innerHTML = inkoname;
   koloaction.innerHTML = inkoloaction;
 
-
-
-  // Set innerHTML of other list items
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#fff";
-  ctx.fillRect(0, 0, 300, 250);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#159";
+  ctx.font = "600 16px Arial";
+  ctx.fillText("SBI - KIOSK BANKING", 90, 25);
   ctx.font = "600 15px Arial";
-  ctx.fillText("SBI - KIOSK BANKING", 80, 25);
-  ctx.font = "600 14px Arial";
-  ctx.fillText("Identity Card", 120, 45);
-  ctx.drawImage(logo, 40, 5, 30, 30);
+  ctx.fillText("Identity Card", 130, 45);
+  ctx.drawImage(logo, 50, 5, 30, 30);
+  // ctx.drawImage(logo, 270, 5, 30, 30);
 
-  ctx.fillText("Cif Number :" , 10, 70);
-  ctx.fillText("Account Number :" , 10, 90);
-  ctx.font = " 12px curier";
+  ctx.font = "600 14px Arial";
+  ctx.fillText("Cif Number :", 10, 70);
+  ctx.fillText("Account Number :", 10, 90);
+  ctx.font = "14px curier";
   ctx.fillText(cifNum.innerHTML, 180, 70);
   ctx.fillText(acNum.innerHTML, 180, 90);
 
-  ctx.font = "600 11px Arial";
-  ctx.fillText("IFSC code :" , 10, 110);
+  ctx.font = "600 12px Arial";
+  ctx.fillText("IFSC code :", 10, 110);
+  ctx.fillText("First Name :", 10, 125);
+  ctx.fillText("Middle Name :", 10, 140);
+  ctx.fillText("Last Name :", 10, 155);
+  ctx.fillText("Address :", 10, 170);
+  ctx.fillText("Village Name :", 10, 215);
+  ctx.fillText("Pin :", 10, 230);
+  ctx.fillText("KO Name :", 10, 245);
+  ctx.fillText("KO Location :", 10, 260);
+
+  ctx.font = " 11px Arial";
+  ctx.fillStyle = "#159";
   ctx.fillText(ifsc.innerHTML, 100, 110);
-
-  ctx.fillText("First Name :" , 10, 125);
   ctx.fillText(fname.innerHTML, 100, 125);
-  ctx.fillText("Middle Name :" , 10, 140);
   ctx.fillText(mname.innerHTML, 100, 140);
-  ctx.fillText("Last Name :" , 10, 155);
   ctx.fillText(lname.innerHTML, 100, 155);
+  wrapText(ctx, address.innerHTML, 100, 170, 150, 15);
+  ctx.fillText(vname.innerHTML, 100, 215);
+  ctx.fillText(pin.innerHTML, 100, 230);
+  ctx.fillText(koname.innerHTML, 100, 245);
+  wrapText(ctx, koloaction.innerHTML, 100, 260, 150, 15);
 
-  ctx.fillText("Address :" , 10, 170);
-  ctx.fillText(address.innerHTML, 100, 170);
-  ctx.fillText("Pin :" , 10, 185);
-  ctx.fillText(pin.innerHTML, 100, 185);
-  ctx.fillText("KO Name :" , 10, 200);
-  ctx.fillText(koname.innerHTML, 100, 200);
-  ctx.fillText("KO Location :" , 10, 215);
-  ctx.fillText(koloaction.innerHTML, 100, 215);
-  
   // Draw other values
 
-  ctx.drawImage(image, 210, 100, 70, 80);
+  ctx.drawImage(image, 250, 110, 90, 100);
 }
 
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+  let posY = y;
 
+  words.forEach((word) => {
+    const testLine = line + word + " ";
+    const metrics = context.measureText(testLine);
+    const testWidth = metrics.width;
+
+    if (testWidth > maxWidth) {
+      context.fillText(line, x, posY);
+      line = word + " ";
+      posY += lineHeight;
+    } else {
+      line = testLine;
+    }
+  });
+
+  context.fillText(line, x, posY);
+}
 
 function loadImage(event) {
   const image = document.getElementById("imgDisplayed");
