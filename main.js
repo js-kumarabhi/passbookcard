@@ -134,12 +134,12 @@ function loadImage(event) {
 const download = document.getElementById("down");
 download.addEventListener("click", function() {
   if (window.navigator.msSaveBlob) {
-    window.navigator.msSaveBlob(canvas.msToBlob(), "Card.png");
+    window.navigator.msSaveBlob(canvas.msToBlob(), "Abhi_Card.png");
   } else {
     const a = document.createElement("a");
     document.body.appendChild(a);
     a.href = canvas.toDataURL();
-    a.download = "Card.png";
+    a.download = "Abhi_Card.png";
     a.click();
     document.body.removeChild(a);
   }
